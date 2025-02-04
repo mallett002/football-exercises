@@ -41,7 +41,6 @@ for conf in conferences['all']:
 # sum lists
 confSum = {}
 for (key, ppgs) in confPPGList.items():
-    # print(f'key: {key}; ppg: {ppgs}')
     confSum[key] = statistics.mean(ppgs)
 
 confSumSorted = sorted(confSum.items(), key=lambda x: x[1], reverse=True)
@@ -50,10 +49,8 @@ result = list()
 
 for confId in confSumSorted:
     conference = [conf for conf in conferences['all'] if conf['id'] == confId[0]]
-    pretty(conference)
     result.append(conference[0]['name'])
 
-# print(result)
 
 
 # How AI solved it:
@@ -69,3 +66,33 @@ conference_stats = [
 
 # Sort conferences by APPG in descending order and extract the conference names
 sorted_conference_names = [conf['conference'] for conf in sorted(conference_stats, key=lambda x: x['APPG'], reverse=True)]
+
+
+
+
+
+
+
+
+
+###################################################################
+# 2. Team with most points through uprights
+###################################################################
+# expected: SYRACUSE
+
+# PATs = 1; fieldGoals = 3;
+
+# look through each team and get a total pats + fg
+# get the one with the most pts
+
+upright_pts_per_team = [
+    {
+        'upright_pts': (team_data['fieldGoals'] * 3) + (team_data['PATs']),
+        'team': team_data['name']
+    }
+    for _, team_data in teams['index'].items()
+]
+
+team_with_most_upright_pts = max(upright_pts_per_team, key=lambda x: x['upright_pts'])
+
+print(team_with_most_upright_pts['team'])
