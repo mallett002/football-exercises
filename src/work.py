@@ -163,4 +163,16 @@ filtered_and_sorted = sorted(
     key=lambda t: t[1]
 )
 
-pretty(filtered_and_sorted)
+# Same thing as above, but mapping to get just the names
+filtered_and_sorted_and_mapped_to_name = list(map(
+    lambda t: t[0],
+    sorted(
+        (
+            (team['name'], team['games'])
+            for _, team in teams['index'].items() if team['games'] < 7
+        ),
+        key=lambda t: t[1]
+    )
+))
+
+pretty(filtered_and_sorted_and_mapped_to_name)
