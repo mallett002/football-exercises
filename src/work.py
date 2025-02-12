@@ -150,4 +150,17 @@ filtered = list(filter(lambda t: t[1]['games'] < 7, all_teams))
 sorted_by_games = sorted(filtered, key=lambda t: t[1]['games'])
 mapped = list(map(lambda t: ( t[1]['name'], t[1]['games'] ), sorted_by_games))
 
-pretty(mapped)
+# pretty(mapped)
+
+
+# Using list comprehension
+# Look through teams, get ones where games < 7, get just the names, and sort by games
+filtered_and_sorted = sorted(
+    (
+        (team['name'], team['games'])
+        for _, team in teams['index'].items() if team['games'] < 7
+    ),
+    key=lambda t: t[1]
+)
+
+pretty(filtered_and_sorted)
