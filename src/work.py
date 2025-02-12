@@ -95,4 +95,59 @@ upright_pts_per_team = [
 
 team_with_most_upright_pts = max(upright_pts_per_team, key=lambda x: x['upright_pts'])
 
-print(team_with_most_upright_pts['team'])
+the_team = team_with_most_upright_pts['team']
+
+
+###################################################################
+# 3. Teams that have played fewer than 7 games
+###################################################################
+# expected:
+# database.teams.ARIZONA_STATE.name,
+# database.teams.CALIFORNIA.name,
+# database.teams.CLEMSON.name,
+# database.teams.COLORADO.name,
+# database.teams.DUKE.name,
+# database.teams.FLORIDA_STATE.name,
+# database.teams.ILLINOIS.name,
+# database.teams.IOWA.name,
+# database.teams.IOWA_STATE.name,
+# database.teams.KANSAS.name,
+# database.teams.KENTUCKY.name,
+# database.teams.MARYLAND.name,
+# database.teams.MICHIGAN_STATE.name,
+# database.teams.MINNESOTA.name,
+# database.teams.MISSISSIPPI_STATE.name,
+# database.teams.MISSOURI.name,
+# database.teams.NC_STATE.name,
+# database.teams.NEBRASKA.name,
+# database.teams.NORTH_CAROLINA.name,
+# database.teams.NORTHWESTERN.name,
+# database.teams.OKLAHOMA.name,
+# database.teams.OREGON.name,
+# database.teams.OREGON_STATE.name,
+# database.teams.PENN_STATE.name,
+# database.teams.PURDUE.name,
+# database.teams.SOUTH_CAROLINA.name,
+# database.teams.STANFORD.name,
+# database.teams.SYRACUSE.name,
+# database.teams.TCU.name,
+# database.teams.TENNESSEE.name,
+# database.teams.TEXAS_TECH.name,
+# database.teams.UCLA.name,
+# database.teams.USC.name,
+# database.teams.UTAH.name,
+# database.teams.VIRGINIA.name,
+# database.teams.VIRGINIA_TECH.name,
+# database.teams.WAKE_FOREST.name,
+# database.teams.WASHINGTON_STATE.name,
+# database.teams.WEST_VIRGINIA.name,
+# database.teams.WISCONSIN.name
+
+# look through teams, get ones where games < 7, get just the names
+all_teams = teams['index'].items()
+
+filtered = list(filter(lambda t: t[1]['games'] < 7, all_teams))
+sorted_by_games = sorted(filtered, key=lambda t: t[1]['games'])
+mapped = list(map(lambda t: ( t[1]['name'], t[1]['games'] ), sorted_by_games))
+
+pretty(mapped)
