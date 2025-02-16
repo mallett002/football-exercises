@@ -175,4 +175,29 @@ filtered_and_sorted_and_mapped_to_name = list(map(
     )
 ))
 
-pretty(filtered_and_sorted_and_mapped_to_name)
+# my attempt again:
+teasm_sorted_by_fewest_games_played = list(map(lambda t: t['name'], sorted([
+    team
+    for _, team in teams['index'].items() if team['games'] < 7
+], key=lambda t: t['games'])))
+
+
+
+
+
+
+###################################################################
+# 4. Team with the best touchdown to field goal ratio
+###################################################################
+# expected: "Georgia Tech"
+teams_td_fgs = [
+    {
+        'td_to_fg': team['touchdowns'] / team['fieldGoals'],
+        'name': team['name'],
+    }
+    for _, team in teams['index'].items()
+]
+best_td_fg_ratio = max(teams_td_fgs, key=lambda x: x['td_to_fg'])
+
+pretty(best_td_fg_ratio['name']) # Georgia Tech
+
