@@ -197,7 +197,29 @@ teams_td_fgs = [
     }
     for _, team in teams['index'].items()
 ]
+
 best_td_fg_ratio = max(teams_td_fgs, key=lambda x: x['td_to_fg'])
 
-pretty(best_td_fg_ratio['name']) # Georgia Tech
+# pretty(best_td_fg_ratio['name']) # Georgia Tech
+
+
+
+###################################################################
+# 5. The conference with the fewest teams
+###################################################################
+# Expected: BIG_12
+
+conf_data = [ 
+    {
+        'team_count': len(conf['teams']),
+        'name': conf['name'],
+    } 
+    for conf in conferences['all']
+]
+
+conf_fewest_teams = min(conf_data, key=lambda x: x['team_count'])
+
+# pretty(conf_data)
+# print(conf_fewest_teams['name']) # Big 12
+
 
