@@ -223,3 +223,43 @@ conf_fewest_teams = min(conf_data, key=lambda x: x['team_count'])
 # print(conf_fewest_teams['name']) # Big 12
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###################################################################
+# 6. The team nicknames for teams with at least one safety or two point conversion - sorted by most
+###################################################################
+teams_with_safties_or_2pt_convs = [
+    {
+        'total': team['safeties'] + team['twoPointConversions'],
+        'nickname': team['nickname'],
+    } 
+    for _, team in teams['index'].items() if team['safeties'] > 0 or team['twoPointConversions'] > 0
+]
+
+teams_with_safties_or_2pt_convs = list(
+    map(
+        lambda x: x['nickname'],
+        sorted(teams_with_safties_or_2pt_convs, key=lambda x: x['total'], reverse=True)
+    )
+)
+
+# pretty(teams_with_safties_or_2pt_convs)
