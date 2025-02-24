@@ -226,24 +226,6 @@ conf_fewest_teams = min(conf_data, key=lambda x: x['team_count'])
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ###################################################################
 # 6. The team nicknames for teams with at least one safety or two point conversion - sorted by most
 ###################################################################
